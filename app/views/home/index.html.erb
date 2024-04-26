@@ -2,51 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <title>Главная</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Эпичная битва</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+      .task {
+          padding: 20px;
+          margin-top: 5px;
+      }
+      .centered-button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 120px;
+      }
+  </style>
 </head>
 <body>
-<div class='battlefield'>
-  <div class='team_container left'>
-    <%- @team1.each do |character| %>
-      <div>
-        <%= image_tag character.unit%>
-      </div>
-    <% end %>
-  </div>
-  <div class='team_container right'>
-    <%- @team2.each do |character| %>
-      <div>
-        <%= image_tag character.unit%>
-      </div>
-    <% end %>
-  </div>
+
+<div class="centered-button">
+  <a href="/warehouses" class="btn btn-secondary btn-lg">Перейти в комнату сражения</a>
 </div>
 
-<div class='controls'>
-  <div class='controls_container'>
-    <%= link_to 'Add Knight', '/create_knight' %>
-  </div>
-  <div class='controls_container'>
-    <%= link_to 'Add Mage', '/create_mage' %>
-  </div>
-  <div class='controls_container'>
-    <%= link_to 'Add Medusa', '/create_medusa' %>
-  </div>
-  <div class='controls_container'>
-    <%= link_to 'Add Jinn', '/create_jinn' %>
-  </div>
-  <div class='controls_container'>
-    <%= link_to 'Destroy Jinn', '/destroy_jinn' %>
-  </div>
-</div>
 
 <div class='task'>
   <p>
-    Выше на странице происходит эпичная битва.
+    На следующей странице происходит эпичная битва.
   </p>
   <p>
     В базе данных в таблице characters лежат персонажи, разделенные на две команды. Для каждого персонажа определен его юнит, один из четырех доступных: mage, knight, medusa и jinn. Нужно реализовать логику битвы.
@@ -54,67 +36,35 @@
   <p>
     В модели:
   <ol>
-    <li>
-      Запретить создание персонажей без команды или юнита
-    </li>
-    <li>
-      Запретить создание персонажей с юнитом, не принадлещим указанному списку.
-    </li>
-    <li>
-      Запретить создание персонажей с командой, отличной от 1 или 2.
-    </li>
+    <li>Запретить создание персонажей без команды или юнита</li>
+    <li>Запретить создание персонажей с юнитом, не принадлещим указанному списку.</li>
+    <li>Запретить создание персонажей с командой, отличной от 1 или 2.</li>
     <li>Учесть правило: В команду 1 можно добавить только мага и рыцаря, в команду 2 - только медузу и джинна.</li>
-    <li>
-      Реализовать логику обычных и ультимативных способностей команд
-    </li>
-    <li>
-      Команда 1 может призвать нового мага или рыцаря, а команда 2 - нового джинна или новую медузу. Для этих действий нужны кнопки или ссылки.
-    </li>
-    <li>
-      Ульта команды 1: если в команде 1 есть хотя бы два мага и два рыцаря, они могут использовать ульту и призвать 5 рыцарей.
-    </li>
-    <li>
-      Ульта команды 2: если в команде два есть 2 джинна и 1 медуза, они могут убрать с поля 3 случайных персонажей противников.
-    </li>
-    <li>
-      Дополнительные механики на ваше усмотрение поощряются.
-    </li>
+    <li>Реализовать логику обычных и ультимативных способностей команд</li>
+    <li>Команда 1 может призвать нового мага или рыцаря, а команда 2 - нового джинна или новую медузу. Для этих действий нужны кнопки или ссылки.</li>
+    <li>Ульта команды 1: если в команде 1 есть хотя бы два мага и два рыцаря, они могут использовать ульту и призвать 5 рыцарей.</li>
+    <li>Ульта команды 2: если в команде два есть 2 джинна и 1 медуза, они могут убрать с поля 3 случайных персонажей противников.</li>
+    <li>Дополнительные механики на ваше усмотрение поощряются.</li>
   </ol>
-  </p>
   </p>
   <p>
     В роутинге и контроллерах:
   <ol>
-    <li>
-      Составить удобные пути для всех действий.
-    </li>
-    <li>
-      Все действия должны заканчиваться редиректом на стартовую страницу, которая всегда отображает текущее состояние игры. AJAX использовать не нужно, но если сильно хочется, то можно.
-    </li>
-    <li>
-      Реализовать контроллер или контроллеры, необходимые для работы приложения.</li>
+    <li>Составить удобные пути для всех действий.</li>
+    <li>Все действия должны заканчиваться редиректом на стартовую страницу, которая всегда отображает текущее состояние игры. AJAX использовать не нужно, но если сильно хочется, то можно.</li>
+    <li>Реализовать контроллер или контроллеры, необходимые для работы приложения.</li>
   </ol>
   </p>
   <p>
     В представлениях:
   <ol>
-    <li>
-      Добавить необходимые кнопки или ссылки. Примеры ссылок на странице, но они, конечно, не работают.
-    </li>
-    <li>
-      Удалите этот текст, когда выполните все задания.
-    </li>
-    <li>
-      Любые доработки поощряются.
-    </li>
-    <li>
-      Опционально: в файле <code>app/views/home/index.html.erb</code>
-      код для рендеринга команд повторяется с точностью до css-стилей. Подумайте, как избавиться от повторяющегося кода.
-    </li>
+    <li>Добавить необходимые кнопки или ссылки. Примеры ссылок на странице, но они, конечно, не работают.</li>
+    <li>Удалите этот текст, когда выполните все задания.</li>
+    <li>Любые доработки поощряются.</li>
+    <li>Опционально: в файле <code>app/views/home/index.html.erb</code> код для рендеринга команд повторяется с точностью до css-стилей. Подумайте, как избавиться от повторяющегося кода.</li>
   </ol>
   </p>
 </div>
+
 </body>
 </html>
-
-
