@@ -63,4 +63,33 @@ class HomeController < ApplicationController
 
     redirect_to warehouses_path
   end
+
+  def team1_ultimate
+    if Character.has_character_type_in_team(1, 'knight', 2) &&
+      Character.has_character_type_in_team(1, 'mage', 2)
+      5.times do
+        Character.create(unit: 'knight', team: 1)
+      end
+
+      redirect_to warehouses_path
+    else
+
+      redirect_to warehouses_path
+    end
+  end
+
+  def team2_ultimate
+    if Character.has_character_type_in_team(2, 'jinn', 2) &&
+      Character.has_character_type_in_team(2, 'medusa', 1)
+
+      enemy_characters = Character.where(team: 1)
+
+      enemy_characters.sample(3).each(&:destroy)
+
+      redirect_to warehouses_path
+    else
+
+      redirect_to warehouses_path
+    end
+  end
 end

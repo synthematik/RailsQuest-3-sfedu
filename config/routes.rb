@@ -18,4 +18,8 @@ Rails.application.routes.draw do
    get "/destroy_medusa", to: "home#destroy_medusa"
 
    get "/destroy_knight", to: "home#destroy_knight"
+
+   post "/team1_ultimate", to: "home#team1_ultimate"
+
+   post "/team2_ultimate", to: "home#team2_ultimate"
 end

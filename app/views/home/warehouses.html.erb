@@ -25,6 +25,9 @@
           <div class='col-6 text-center mt-3'>
             <%= link_to 'Удалить Мага', '/destroy_mage', method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
           </div>
+          <div class="col-12 text-center mt-3">
+            <%= button_to 'Активировать ульту команды 1', { action: :team1_ultimate }, method: :post, class: 'btn btn-warning' %>
+          </div>
         </div>
       </div>
     </div>
@@ -44,6 +47,9 @@
           </div>
           <div class='col-6 text-center mt-3'>
             <%= link_to 'Удалить Джина', '/destroy_jinn', class: 'btn btn-danger' %>
+          </div>
+          <div class="col-12 text-center mt-3">
+            <%= button_to 'Активировать ульту команды 2', { action: :team2_ultimate }, method: :post, class: 'btn btn-warning' %>
           </div>
         </div>
       </div>
